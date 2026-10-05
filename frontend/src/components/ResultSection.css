@@ -1,0 +1,132 @@
+/* ── Result Section ──────────────────────────────────────────────────── */
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Image column */
+.result-image-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.result-image-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-400);
+}
+
+.result-image-frame {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.result-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Prediction column */
+.result-prediction-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.result-plant-name {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+
+/* Confidence */
+.result-confidence-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-confidence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.result-confidence-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+
+.result-confidence-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.result-confidence-bar-bg {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--gray-200);
+  overflow: hidden;
+}
+
+.result-confidence-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-accent);
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.result-confidence-bar--low {
+  background: var(--color-warning);
+}
+
+/* Low-confidence warning */
+.result-low-conf-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--color-warning-bg);
+  border: 1px solid #fde68a;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-warning);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.result-low-conf-warning svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Class index */
+.result-class-index {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .result-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .result-plant-name {
+    font-size: 1.4rem;
+  }
+}

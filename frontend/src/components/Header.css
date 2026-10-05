@@ -1,0 +1,58 @@
+/* ── Header ──────────────────────────────────────────────────────────── */
+.header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xs);
+}
+
+.header-inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 28px 24px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.header-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-50);
+  border-radius: var(--border-radius);
+  color: var(--color-accent);
+}
+
+.header-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.header-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  max-width: 520px;
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    padding: 20px 16px;
+  }
+  .header-title {
+    font-size: 1.3rem;
+  }
+  .header-subtitle {
+    font-size: 0.82rem;
+  }
+}

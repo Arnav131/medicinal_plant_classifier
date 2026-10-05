@@ -1,0 +1,52 @@
+/* ── Plant Information ────────────────────────────────────────────────── */
+
+.plant-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.plant-info-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.plant-info-card:hover {
+  border-color: var(--green-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.plant-info-card--wide {
+  grid-column: 1 / -1;
+}
+
+.plant-info-card-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.plant-info-card-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-400);
+}
+
+.plant-info-card-value {
+  font-size: 0.92rem;
+  color: var(--gray-800);
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .plant-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
