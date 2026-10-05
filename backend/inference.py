@@ -89,6 +89,7 @@ class PlantClassifier:
             Softmax probability of the predicted class (0–100 %).
         """
         image = image.convert("RGB")
+        image.thumbnail((1024, 1024))
         tensor = self.transform(image).unsqueeze(0).to(self.device)
 
         with torch.no_grad():

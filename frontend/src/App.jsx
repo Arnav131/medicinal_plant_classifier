@@ -36,6 +36,48 @@ function App() {
     setError(null);
   }, []);
 
+async function compressImageIfNeeded(file, maxDimension = 1024) {
+  if (file.size < 400 * 1024) return file;
+
+  return new Promise((resolve) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      let { width, height } = img;
+      if (width <= maxDimension && height <= maxDimension) {
+        resolve(file);
+        return;
+      }
+      if (width > height) {
+        height = Math.round((height * maxDimension) / width);
+        width = maxDimension;
+      } else {
+        width = Math.round((width * maxDimension) / height);
+        height = maxDimension;
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(new File([blob], file.name.replace(/\.[^.]+$/, ".jpg"), { type: "image/jpeg" }));
+          } else {
+            resolve(file);
+          }
+        },
+        "image/jpeg",
+        0.85
+      );
+    };
+    img.onerror = () => resolve(file);
+    img.src = url;
+  });
+}
+
   const handleIdentify = useCallback(async () => {
     if (!file) return;
     setLoading(true);
@@ -43,7 +85,8 @@ function App() {
     setResult(null);
 
     try {
-      const data = await predictPlant(file);
+      const fileToUpload = await compressImageIfNeeded(file);
+      const data = await predictPlant(fileToUpload);
       setResult(data);
       // Scroll to results
       setTimeout(() => {
